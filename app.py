@@ -2,8 +2,9 @@ import flask
 from flask import Flask, request, render_template
 from Naked.toolshed.shell import execute_js
 from external import find
+from dotenv import load_dotenv
 
-
+load_dotenv()
 app = Flask(__name__)
 
 

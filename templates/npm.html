@@ -1,0 +1,217 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <title>NPM Output</title>
+    <style>
+        .well-link {
+            text-decoration: none;
+        }
+
+        .panel-shadow {
+            box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+    <script src="https://malsup.github.io/jquery.blockUI.js"></script>
+    <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css'> 
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <h1 style="color:white">NPM OUTPUT</h1>
+        <a class="navbar-brand logo-image" href="/"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/" style="font-size: 20px;">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./github_input" style="font-size: 20px;">Github</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./npm_input" style="font-size: 20px;">NPM</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./pypi_input" style="font-size: 20px;">Pypi</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+<h1 style="text-align: center;">{{username}}</h1>
+<br><br>
+
+
+
+<div class="panel panel-success">
+    <div class="panel-heading">Github Profile Score (30)</div>
+    <div class="panel-body">{{userProfileRating}}</div>
+</div>
+
+<div class="panel panel-success">
+    <div class="panel-heading">Repository Popularity Score (20)</div>
+    <div class="panel-body">{{popularScore}} - {{popular}}</div>
+</div>
+
+<div class="panel panel-success">
+    <div class="panel-heading">User Code Vulnerability Score (50)</div>
+    <div class="panel-body">{{vulnerability_l}}</div>
+</div>
+
+<div class="panel panel-success">
+    <div class="panel-heading">Total Score (100)</div>
+    <div class="panel-body">{{total_score}}</div>
+</div>
+<div class="panel panel-success">
+    <div class="panel-heading">Should Use? </div>
+    {%if total_score>70:%}
+    <div class="panel-body">Yes</div>
+    {% else %}
+    <div class="panel-body">No</div>
+    {% endif %}
+</div>
+<h3>Repositories Vulnerable Functions</h3>
+<br>
+
+{% if foundFunctions|length == 0 %}
+<div class="alert alert-dark" role="alert">
+    No vulnerable functions found under this repository
+</div>
+{% else %}
+{% for i in foundFunctions %}
+<div class="panel panel-success">
+    <div class="panel-heading">
+    <div class="panel-body">{{i}}</div>
+</div>
+{% endfor %}
+{% endif %}
+
+<br><br>
+
+
+<h3>Repositories Vulnerability Levels</h3>
+<br>
+
+{% if repovalues|length == 0 %}
+<div class="alert alert-dark" role="alert">
+    No repo found under this username
+</div>
+{% else %}
+{% for key,value in repovalues.items() %}
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{key}}</h3>
+
+    </div>
+    <div class="panel-body">{{value}}</div>
+</div>
+{% endfor %}
+
+{% endif %}
+
+<br><br>
+{% if (checked < 3): %}
+<h3>Committer Ratings based on their Profiles</h3>
+<br>
+
+{% if committerRating|length == 0 %}
+<div class="alert alert-dark" role="alert">
+    No committers found under this username
+</div>
+{% else %}
+{% for key,value in committerRating.items() %}
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{key}}</h3>
+
+    </div>
+    <div class="panel-body">{{value}}</div>
+</div>
+{% endfor %}
+
+{% endif %}
+{% else %}
+<div class="panel panel-success">
+    <div class="panel-body">Since repository count is high, no need to check</div>
+</div>
+{% endif %}
+
+<br><br>
+{% if (checked < 2): %}
+<h3>Follower Ratings based on their Profile</h3>
+<br>
+
+{% if followerRating|length == 0 %}
+<div class="alert alert-dark" role="alert">
+    No follower found under this username
+</div>
+{% else %}
+{% for key,value in followerRating.items() %}
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{key}}</h3>
+
+    </div>
+    <div class="panel-body">{{value}}</div>
+</div>
+{% endfor %}
+{% endif %}
+{% else %}
+<div class="panel panel-success">
+    <div class="panel-body">Since repository count is high, no need to check</div>
+</div>
+{% endif %}
+
+
+<br><br>
+{% if (checked < 1): %}
+<h3>Following Ratings based on their Profile</h3>
+<br>
+
+{% if followingRating|length == 0 %}
+<div class="alert alert-dark" role="alert">
+    No following found under this username
+</div>
+{% else %}
+{% for key,value in followingRating.items() %}
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{key}}</h3>
+
+    </div>
+    <div class="panel-body">{{value}}</div>
+</div>
+{% endfor %}
+
+{% endif %}
+{% else %}
+<div class="panel panel-success">
+    <div class="panel-body">Since repository count is high, no need to check</div>
+</div>
+{% endif %}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('div.disable').block({
+            message: null
+        });
+
+    });
+</script>
+</body>
+
+</html>

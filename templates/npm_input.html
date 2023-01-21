@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPM Input</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <title>NPM Input</title> 
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <h1 style="color:white">NPM</h1>
+        <a class="navbar-brand logo-image" href="/"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/" style="font-size: 20px;">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./github_input" style="font-size: 20px;">Github</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./npm_input" style="font-size: 20px;">NPM</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./pypi_input" style="font-size: 20px;">Pypi</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <div class="login-dark">
+        <form method="post" name="frm" action="/npm_input/npm">
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration"><em class="icon ion-ios-locked-outline"></em></div>
+            <div class="form-group"><input class="form-control" type="text" name="link" placeholder="Enter NPM Package Link"></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
